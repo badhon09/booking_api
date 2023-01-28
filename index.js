@@ -15,11 +15,20 @@ mongoose.connect('mongodb+srv://badhon_09:badhon09@cluster0.hyrvm.mongodb.net/bo
     console.log('Error connecting to database');
   });
 
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
+
 app.listen(port, () => {
 	console.log("App is Running on" +port)
 });
 
+app.use('/test', (req,res) => {
+  res.send('asdf'+req.body.name);
+});
+
 //middleware
-app.use(express.json());
+// app.use(express.json());
 app.use('/api/users',userRoutes);
 app.use('/api/hotels',hotelRoutes);

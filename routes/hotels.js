@@ -7,6 +7,7 @@ const Hotel = require('../models/Hotel.js')
 
 //create
 router.post('/add', (req,res) => {
+	res.send('aaaaa'+req.body.name);
 	const newHotel = new Hotel(req.body)
 	try{
 		const saveHotel = newHotel.save();
