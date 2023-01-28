@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/users.js')
 const hotelRoutes = require('./routes/hotels.js')
+const authRoutes = require('./routes/auth.js')
 
 
 mongoose.connect('mongodb+srv://badhon_09:badhon09@cluster0.hyrvm.mongodb.net/bookingApp')
@@ -32,3 +33,4 @@ app.use('/test', (req,res) => {
 // app.use(express.json());
 app.use('/api/users',userRoutes);
 app.use('/api/hotels',hotelRoutes);
+app.use('/api/auth',authRoutes);
