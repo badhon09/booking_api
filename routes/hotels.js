@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const hotelController = require('../controllers/hotelController.js');
-//get
 
 
-//create
+router.get('/all',hotelController.getHotels);
 router.post('/add',hotelController.createHotel);
-
-//update
-
-//delete
 
 
 

@@ -10,3 +10,7 @@ exports.createHotel = (req,res) => {
 	}
 
 }
+exports.getHotels = async (req,res) => {
+	const hotels = await Hotel.find();
+	res.status(200).json(hotels);
+}

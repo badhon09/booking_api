@@ -45,7 +45,7 @@ exports.login = (req,res) => {
 	          email: user.email,
 	          userId: user._id
 	        },
-	        process.env.JWT_KEY,
+	        "secretkeyappearshere",
 	        {
 	          expiresIn: "1h"
 	        }
