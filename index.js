@@ -9,6 +9,7 @@ const userRoutes = require('./routes/users.js')
 const hotelRoutes = require('./routes/hotels.js')
 const authRoutes = require('./routes/auth.js')
 const roomRoutes = require('./routes/room.js')
+const bookingRoutes = require('./routes/booking.js')
 
 
 mongoose.connect('mongodb+srv://badhon_09:badhon09@cluster0.hyrvm.mongodb.net/bookingApp')
@@ -64,3 +65,4 @@ app.use('/api/users',userRoutes);
 app.use('/api/hotels',hotelRoutes);
 app.use('/api/auth',authRoutes);
 app.use('/api/rooms',roomRoutes);
+app.use('/api/bookings',bookingRoutes);

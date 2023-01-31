@@ -36,6 +36,7 @@ exports.login = (req,res) => {
 	    bcrypt.compare(password, user.password, (err, result) => {
 	      if (err || !result) {
 	        return res.status(401).json({
+			  success:false,
 	          message: "Auth failed"
 	        });
 	      }
@@ -52,6 +53,7 @@ exports.login = (req,res) => {
 	      );
 
 	      res.status(200).json({
+			success:true,
 	        message: "Auth successful",
 	        token: token
 	      });
