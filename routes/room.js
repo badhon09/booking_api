@@ -3,6 +3,7 @@ const router = express.Router();
 const roomController = require('../controllers/roomController.js');
 
 router.get('/', roomController.getAllRooms);
+router.get('/getroom/:roomId', roomController.getRoomById);
 // router.post('/add', roomController.getAllRooms);
 
 //CREATE

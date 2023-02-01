@@ -23,3 +23,10 @@ exports.getAllRooms = async (req,res) => {
 	const rooms = await Room.find();
 	res.status(200).json(rooms);
 }
+
+//get one
+exports.getRoomById = async (req,res) => {
+  let id = req.params.roomId;
+	const room = await Room.find({_id:id});
+	res.status(200).json(room);
+}
