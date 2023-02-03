@@ -24,9 +24,33 @@ exports.getAllRooms = async (req,res) => {
 	res.status(200).json(rooms);
 }
 
+exports.getSearchRooms = async (req,res) => {
+  const {persons} = req.query; 
+
+  try{
+    const rooms = await Room.find({
+      $and : [
+        {maxPeople:{$lte:persons}}
+      ]
+    });
+
+    res.status(200).json(rooms);
+  }catch(err){
+    res.status(500).json(err);
+  }
+
+}
+
 //get one
 exports.getRoomById = async (req,res) => {
   let id = req.params.roomId;
-	const room = await Room.find({_id:id});
-	res.status(200).json(room);
+
+  try{
+    const room = await Room.find({_id:id});
+    res.status(200).json(room);
+  }catch(err){
+
+    res.status(500).json(err);
+  }
+
 }
