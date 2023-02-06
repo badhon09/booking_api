@@ -14,8 +14,8 @@ const RoomSchema = new mongoose.Schema(
             type: Number,
             required: true,
           },
-          photos: {
-            type: [String]
+          photo: {
+            type: String
           },
           desc: {
             type: String,

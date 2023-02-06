@@ -4,6 +4,28 @@ const port = 5000;
 const mongoose = require('mongoose');
 var cors = require('cors')
 const nodemailer = require('nodemailer');
+const multer = require('multer');
+const path = require('path')
+
+app.set('view engine','ejs');
+
+const storage = multer.diskStorage({
+  destination: (req,file,cb) => {
+    cb(null,'images')
+  },
+  filename:(req,file,cb)=>{
+    cb(null,Date.now()+path.extname(file.originalname))
+  }
+})
+const upload = multer({storage:storage})
+
+app.get('/upload',(req,res)=>{
+  res.render('upload')
+})
+
+app.post('/upload',upload.single('file'),(req,res)=>{
+  res.send('upload')
+})
 
 const userRoutes = require('./routes/users.js')
 const hotelRoutes = require('./routes/hotels.js')
