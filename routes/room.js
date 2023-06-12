@@ -4,6 +4,7 @@ const router = express.Router();
 const roomController = require('../controllers/roomController.js');
 const multer = require('multer');
 const path = require('path')
+//const upload = multer({ dest: 'uploads/' });
 
 const storage = multer.diskStorage({
   destination: (req,file,cb) => {
@@ -21,7 +22,7 @@ router.get('/search-room', roomController.getSearchRooms);
 // router.post('/add', roomController.getAllRooms);
 
 //CREATE
-router.post("/add/:hotelid",upload.single('photos'), roomController.createRoom);
+router.post("/add/:hotelid",upload.single('photo'), roomController.createRoom);
 
 
 module.exports = router;

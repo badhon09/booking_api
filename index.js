@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const port = 5000;
+const port = 3001;
 const mongoose = require('mongoose');
 var cors = require('cors')
 const nodemailer = require('nodemailer');
