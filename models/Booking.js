@@ -8,7 +8,7 @@ const BookingSchema = new mongoose.Schema(
           },
           roomNumber: {
             type: String,
-            required: true,
+            ref: 'Room',
           },
           checkIn: {
             type: String,

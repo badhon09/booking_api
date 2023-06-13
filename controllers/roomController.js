@@ -1,6 +1,7 @@
 const Room = require('../models/Room.js')
 const Hotel = require('../models/Hotel.js')
 const { v4: uuidv4 } = require('uuid');
+const Booking = require('../models/Booking.js');
 
 
 
@@ -68,3 +69,28 @@ exports.getRoomById = async (req,res) => {
   }
 
 }
+
+exports.getRoomsByFilter = async (req,res) => {
+ 
+
+  try{
+    const { checkIn, checkOut } = req.body;
+    
+    // Convert the check-in and check-out strings to Date objects
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    console.log(checkInDate);
+    // Query the database to filter the bookings based on the check-in and check-out dates
+    const bookings = await Booking.find({
+      //checkIn: { $lte: checkOutDate },
+      checkOut: { $gte: checkInDate }
+    }).populate('rooms'); // Assuming there's a reference to the room in the Booking schema
+
+    res.json(bookings);
+  }catch(err){
+
+    res.status(500).json(err);
+  }
+
+}
+
