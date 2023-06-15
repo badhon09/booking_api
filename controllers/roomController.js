@@ -79,14 +79,20 @@ exports.getRoomsByFilter = async (req,res) => {
     // Convert the check-in and check-out strings to Date objects
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-    console.log(checkInDate);
     // Query the database to filter the bookings based on the check-in and check-out dates
     const bookings = await Booking.find({
-      //checkIn: { $lte: checkOutDate },
+      checkIn: { $lte: checkOutDate },
       checkOut: { $gte: checkInDate }
-    }).populate('rooms'); // Assuming there's a reference to the room in the Booking schema
+    },
+    { _id: 1 }); // Assuming there's a reference to the room in the Booking schema
 
-    res.json(bookings);
+    let maxPerson = req.params.maxPerson;
+
+    let rooms = await Room.find({
+      maxPeople:{$gte: maxPerson }
+  });
+
+    res.json(rooms);
   }catch(err){
 
     res.status(500).json(err);

@@ -18,7 +18,7 @@ const upload = multer({storage:storage})
 
 router.get('/', roomController.getAllRooms);
 router.get('/getroom/:roomId', roomController.getRoomById);
-router.get('/search-room', roomController.getRoomsByFilter);
+router.get('/search-room/:maxPerson', roomController.getRoomsByFilter);
 // router.post('/add', roomController.getAllRooms);
 
 //CREATE
