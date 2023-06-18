@@ -32,7 +32,7 @@ const BookingSchema = new mongoose.Schema(
             type: String,
            
           },
-         
+          bookingInfo: [{ name: String, email: String , phone:String}] 
     },
     { timestamps: true }
 );

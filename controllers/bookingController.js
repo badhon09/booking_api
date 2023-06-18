@@ -3,7 +3,7 @@ const Booking = require('../models/Booking.js')
 
 exports.createBooking = async (req,res) => {
   //const roomNumber = req.body.roomNumber;
-  const {userId,roomNumber,checkIn,checkOut,totalPrice} = req.body;
+  const {userId,roomNumber,checkIn,checkOut,totalPrice,name,phone,email} = req.body;
   let checkInn = new Date(checkIn)
   let checkOutt = new Date(checkOut)
   const newBooking = new Booking({
@@ -11,13 +11,17 @@ exports.createBooking = async (req,res) => {
     roomNumber:roomNumber,
     checkIn:checkInn,
     checkOut:checkOutt,
-    totalPrice:totalPrice
+    totalPrice:totalPrice,
+    bookingInfo : {
+      name:name,
+      phone:phone,
+      email:email
+    }
   });
 
   try {
     const savedBooking = await newBooking.save();
     await updateRoomUnavailableDates(roomNumber,checkInn,checkOutt);
-    //console.log(savedBooking)
     res.status(200).json(savedBooking);
   } catch (err) {
     res.status(500).json(err);
